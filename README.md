@@ -1,4 +1,4 @@
-# dbms
+# intro to database project
 # Digital Mart - E-commerce Platform
 
 Digital Mart is a CRUD-based e-commerce application developed using PostgreSQL, Node.js for the backend, and JavaScript for the frontend. 
