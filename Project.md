@@ -1,8 +1,7 @@
 # intro to database project
 # Digital Mart - E-commerce Platform
 
-Digital Mart is a CRUD-based e-commerce application developed using PostgreSQL, Node.js for the backend, and JavaScript for the frontend. 
-This project demonstrates a robust database-backed web application where users can browse products, manage orders, and access reviews.
+Digital Mart is a CRUD-based e-commerce application developed using PostgreSQL, Express/Node.js for the backend, and JavaScript for the frontend. This project demonstrates a robust database-backed web application where users can browse products, manage orders, and access reviews.
 
 ## Project Setup
 
@@ -31,20 +30,23 @@ This project demonstrates a robust database-backed web application where users c
    - Open your browser and go to `http://localhost:3000` to access the main site.
    - Use the following routes for specific actions:
      - **Customer Home**: `http://localhost:3000/customer_home`
+     - **Admin Home**: `http://localhost:3000/admin_home` for managing customers, products, and other administrative tasks.
 
 ## Folder Structure
 - **`create.sql`**: Contains SQL statements to set up the database schema.
 - **`insert.sql`**: Populates the database tables with manually inserted dummy values.
-- **`DMQLWeb`**: Contains the front-end files for the website.
+- **`DMQLWeb`**: Contains both front-end and back-end code for the website.
 
 ## Key Features
-- **Customer and Admin Interfaces**: Separate login routes and views for customer and admin roles.
-- **CRUD Operations**: Allows users to perform essential CRUD actions across products, orders, and reviews.
-- **Real-Time Database Interaction**: Pre-defined SQL queries with JOIN operations enable real-time data retrieval and display on the frontend.
+- **Customer and Admin Interfaces**: Separate views for customer and admin functionalities.
+- **CRUD Operations**: Enables admins to perform CRUD actions on orders, customers, products, sellers, and reviews.
+- **Predefined SQL Queries**: The admin interface (`admin_home`) includes a "Visualize Query" button, which executes predefined SQL statements. These queries demonstrate complex operations, such as JOINs across multiple tables and subqueries, allowing admins to retrieve joint search results directly from the database.
+- **Custom SQL Queries**: The "Visualize Query" functionality also allows admins to execute custom SQL queries directly in the browser for quick insights and data exploration.
 
 ## Technology Stack
-- **Backend**: Node.js
+- **Backend**: Express/Node.js
 - **Frontend**: JavaScript, HTML, CSS
 - **Database**: PostgreSQL
+
 
 
