@@ -31,9 +31,6 @@ This project demonstrates a robust database-backed web application where users c
    - Open your browser and go to `http://localhost:3000` to access the main site.
    - Use the following routes for specific actions:
      - **Customer Home**: `http://localhost:3000/customer_home`
-     - **Customer Login**: `http://localhost:3000/login_customer.html`
-     - **Administrator Login**: `http://localhost:3000/login`
-   - *Note:* Login details can be found in the respective credentials files.
 
 ## Folder Structure
 - **`create.sql`**: Contains SQL statements to set up the database schema.
