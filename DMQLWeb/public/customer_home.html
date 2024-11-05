@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Digital Mart</title>
+    <style>
+      body,
+      h1,
+      a,
+      button {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        box-sizing: border-box;
+      }
+      .language-selection {
+        display: flex;
+        justify-content: right;
+        align-items: right;
+        padding: 20px;
+        background-color: white;
+        margin-top: 60px;
+      }
+      .past-orders {
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin-right: 15px;
+      }
+      select {
+        padding: 5px 10px;
+        background-color: #555;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+
+      .site-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60px;
+        z-index: 1000;
+      }
+
+      .logo-and-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+      }
+
+      .logo {
+        width: 40px;
+        height: auto;
+        margin-right: 20px;
+      }
+
+      .site-title {
+        font-size: 24px;
+        font-weight: normal;
+      }
+
+      .sign-out {
+        color: white;
+        font-size: 16px;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin-right: 20px;
+      }
+
+      .content {
+        margin-top: 3px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .product-box {
+        background-color: #f4f4f4;
+        padding: 20px;
+        padding-top: 100px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-box img {
+        width: 100px;
+        height: auto;
+      }
+
+      .product-info {
+        margin-top: 10px;
+      }
+      .buy-now-btn {
+        padding: 10px 20px;
+        background-color: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+      }
+
+      .buy-now-btn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="logo-and-title">
+        <img src="logo.jpeg" alt="Digital Mart Logo" class="logo" />
+        <h1 class="site-title">Digital Mart</h1>
+      </div>
+      <div>
+        <a href="complex_query.html" class="past-orders">Complex Query</a>
+      </div>
+      <div>
+        <a href="my_orders.html" class="past-orders">Top 3 Customers</a>
+      </div>
+    </header>
+    <div class="content" id="product-grid"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetchProducts();
+        function fetchProducts() {
+          fetch("/get/products")
+            .then((response) => response.json())
+            .then((data) => {
+              const grid = document.getElementById("product-grid");
+              grid.innerHTML = "";
+              data.forEach((products) => {
+                const box = document.createElement("div");
+                box.className = "product-box";
+                box.innerHTML = `
+                      <img src="logo.jpeg" alt="Product Image" />
+                      <div class="product-info">
+                        <h4>${products.product_id}</h4>
+                        <p><b>Category:</b> ${products.name}</p>
+                        <p><b>Weight:</b> ${products.category_id}</p>
+                        <p><b>Price:</b> ${products.price}</p>
+                        <p><b>Dimensions:</b> ${products.dimensions}</p>
+                        <button onclick="location.href='order_success.html'" class="buy-now-btn">Buy Now</button>
+                      </div>`;
+                grid.appendChild(box);
+              });
+            })
+            .catch((error) => console.error("Error loading products:", error));
+        }
+      });
+    </script>
+  </body>
+</html>

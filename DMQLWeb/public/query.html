@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Digital Mart</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .content {
+        margin-left: 200px;
+        padding: 60px 20px 20px 20px;
+        height: calc(100vh - 50px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        background-color: #f4f4f4;
+      }
+
+      form {
+        width: 100%;
+        max-width: 600px;
+      }
+
+      textarea {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        margin-top: 20px;
+        cursor: pointer;
+      }
+
+      .submit-btn:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div></div>
+      <div class="logo-and-title">
+        <h1 class="site-title">Digital Mart</h1>
+        <img src="logo.jpeg" alt="Digital Mart Logo" class="logo" />
+      </div>
+      <a href="query.html" class="sign-out">Visualize Query</a>
+      <a href="login.html" class="sign-out">Sign Out</a>
+    </header>
+
+    <aside class="sidebar">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <button class="nav-button">Orders</button>
+          <div class="sub-menu">
+            <a href="/order_add" class="sub-item">Add</a>
+            <a href="/order_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Customers</button>
+          <div class="sub-menu">
+            <a href="/customer_add" class="sub-item">Add</a>
+            <a href="/customer_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Products</button>
+          <div class="sub-menu">
+            <a href="/product_add" class="sub-item">Add</a>
+            <a href="/product_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Sellers</button>
+          <div class="sub-menu">
+            <a href="/seller_add" class="sub-item">Add</a>
+            <a href="/seller_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Reviews</button>
+          <div class="sub-menu">
+            <a href="/reviews_add" class="sub-item">Add</a>
+            <a href="/reviews_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="content">
+      <form action="/submit-query" method="POST">
+        <h2>Enter the query below to visualize/display any results:</h2>
+        <textarea name="sqlQuery" rows="10" required></textarea>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const navButtons = document.querySelectorAll(".nav-button");
+
+        navButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const subMenu = button.nextElementSibling;
+            subMenu.style.display =
+              subMenu.style.display === "block" ? "none" : "block";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

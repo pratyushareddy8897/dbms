@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Digital Mart</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .content {
+        margin-left: 200px;
+        padding-top: 70px;
+        height: calc(100vh - 70px);
+        background-color: #f4f4f4;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div></div>
+      <div class="logo-and-title">
+        <h1 class="site-title">Digital Mart</h1>
+        <img src="logo.jpeg" alt="Digital Mart Logo" class="logo" />
+      </div>
+      <a href="query.html" class="sign-out">Visualize Query</a>
+      <a href="login.html" class="sign-out">Sign Out</a>
+    </header>
+
+    <aside class="sidebar">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <button class="nav-button">Orders</button>
+          <div class="sub-menu">
+            <a href="/order_add" class="sub-item">Add</a>
+            <a href="/order_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Customers</button>
+          <div class="sub-menu">
+            <a href="/customer_add" class="sub-item">Add</a>
+            <a href="/customer_delete" the class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Products</button>
+          <div class="sub-menu">
+            <a href="/product_add" the class="sub-item">Add</a>
+            <a href="/product_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-button">Sellers</button>
+          <div class="sub-menu">
+            <a href="/seller_add" class="sub-item">Add</a>
+            <a href="/seller_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button the class="nav-button">Reviews</button>
+          <div class="sub-menu">
+            <a href="/reviews_add" class="sub-item">Add</a>
+            <a href="/reviews_delete" class="sub-item">Delete</a>
+          </div>
+        </li>
+      </ul>
+    </aside>
+    <div class="content">
+      <table id="query-results-table">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetchResults();
+      });
+
+      function fetchResults() {
+        fetch("/get-query-results")
+          .then((response) => response.json())
+          .then((data) => displayResults(data))
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+
+      function displayResults(data) {
+        const table = document.getElementById("query-results-table");
+        const tbody = table.querySelector("tbody");
+        const thead = table.querySelector("thead");
+
+        if (!data.length) {
+          tbody.innerHTML = '<tr><td colspan="5">No data found.</td></tr>';
+          return;
+        }
+        thead.innerHTML = "";
+        tbody.innerHTML = "";
+        const headers = Object.keys(data[0]);
+        const headerRow = document.createElement("tr");
+        headers.forEach((header) => {
+          const th = document.createElement("th");
+          th.textContent = header;
+          headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        data.forEach((row) => {
+          const tr = document.createElement("tr");
+          headers.forEach((header) => {
+            const td = document.createElement("td");
+            td.textContent = row[header];
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        });
+      }
+    </script>
+  </body>
+</html>
