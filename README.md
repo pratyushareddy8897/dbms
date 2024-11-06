@@ -40,12 +40,11 @@ Digital Mart is a CRUD-based e-commerce application developed using PostgreSQL, 
 ## Key Features
 - **Customer and Admin Interfaces**: Separate views for customer and admin functionalities.
 - **CRUD Operations**: Enables admins to perform CRUD actions on orders, customers, products, sellers, and reviews.
-- **Predefined SQL Queries**: The admin interface includes three predefined SQL query routes that showcase complex data insights:
-  - **Customer Spending Analysis** (`/order/view/complex`): This query displays detailed information on each customer’s spending, including the total orders, total 
-      spent, unique payment methods, and the range of payments. The query joins the `customers`, `orders`, and `payments` tables to provide these insights.
-  - **Top Selling Products by Category** (`/order/view/topproducts`): This query lists the most popular products within each category, displaying total orders, 
-      quantity sold, and revenue generated. It joins the `categories`, `products`, and `orderdetails` tables, helping admins understand product performance.
-  - **Top 3 Customers**: This query identifies the top three customers based on their total spending, providing insights into the most valuable customers.
+- **Predefined SQL Queries**: The admin interface includes three predefined SQL query buttons that showcase complex data insights:
+  - **Customer Spending Analysis**: Provides detailed information on each customer’s spending, including the total orders, total spent, unique payment methods,
+     and the range of payments.
+  - **Top Selling Products by Category**: Lists the most popular products within each category, displaying total orders, quantity sold, and revenue generated.
+  - **Top 3 Customers**: Identifies the top three customers based on their total spending, providing insights into the most valuable customers.
 
 - **Custom SQL Queries**: The "Visualize Query" functionality allows admins to execute custom SQL queries directly in the browser for quick insights and data exploration.
 
@@ -53,6 +52,7 @@ Digital Mart is a CRUD-based e-commerce application developed using PostgreSQL, 
 - **Backend**: Express/Node.js
 - **Frontend**: JavaScript, HTML, CSS
 - **Database**: PostgreSQL
+
 
 
 
