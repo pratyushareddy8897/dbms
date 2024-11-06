@@ -53,6 +53,21 @@ Digital Mart is a CRUD-based e-commerce application developed using PostgreSQL, 
 - **Frontend**: JavaScript, HTML, CSS
 - **Database**: PostgreSQL
 
+##youtube link 
+https://youtu.be/bo0575WOTg8
+
+![image](https://github.com/user-attachments/assets/cc9a5d04-3e66-463f-82d8-77fa136587c7)
+
+![image](https://github.com/user-attachments/assets/d5ced860-7d64-4e00-968b-ee1b3fe75bf2)
+
+![image](https://github.com/user-attachments/assets/9801da4f-2a34-4deb-b66c-e3595e90654f)
+
+![image](https://github.com/user-attachments/assets/4d5c782c-0cb8-431a-9977-4fc179afca24)
+
+
+
+
+
 
 
 
