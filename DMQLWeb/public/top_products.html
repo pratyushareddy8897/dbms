@@ -79,20 +79,17 @@
         <h1 class="site-title">Digital Mart</h1>
       </div>
       <div>
-        <a href="complex_query.html" class="past-orders">Customer Spending Patterns</a>
+        <a href="top_products.html" class="past-orders">Top Selling Products</a>
       </div>
     </header>
     <table id="orders-table">
       <thead>
         <tr>
-          <th>Customer ID</th>
-          <th>Customer Name</th>
+          <th>Category Name</th>
+          <th>Product Name</th>
           <th>Total Orders</th>
-          <th>Total Spent</th>
-          <th>Distinct Payment Methods</th>
-          <th>Max Payment</th>
-          <th>Min Payment</th>
-          <th>Payment Method</th>
+          <th>Total Quantity Sold</th>
+          <th>Total Revenue</th>
         </tr>
       </thead>
       <tbody id="order-table-body"></tbody>
@@ -103,7 +100,7 @@
         fetchOrders();
         function fetchOrders() {
           //console.log("Fetching Data");
-          fetch("/order/view/complex")
+          fetch("/order/view/topproducts")
             .then((response) => {
              //console.log(response);
               //console.log(data);
@@ -121,10 +118,8 @@
               } else {
                 data.forEach((o) => {
                   const row = document.createElement("tr");
-                  const paymentMethods = o.payment_methods_used.join(", ");
-                  row.innerHTML = `<td>${o.customer_id}</td><td>${o.customer_name}</td>
-              <td>${o.total_orders}</td><td>${o.total_spent}</td><td>${o.distinct_payment_methods}</td>
-              <td>${o.max_payment}</td><td>${o.min_payment}</td><td>${paymentMethods}</td>`;
+                  row.innerHTML = `<td>${o.category_name}</td><td>${o.product_name}</td>
+              <td>${o.total_orders}</td><td>${o.total_quantity_sold}</td><td>${o.total_revenue}</td>`;
                   tableBody.appendChild(row);
                 });
               }
