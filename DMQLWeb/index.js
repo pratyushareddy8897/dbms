@@ -437,7 +437,20 @@ app.get("/order/view/customer", async (req, res) => {
 app.get("/order/view/complex", async (req, res) => {
   try {
     const result = await db.query(
-      "SELECT  c.customer_id, c.name, o.total FROM orders o JOIN customers c ON o.customer_id=c.customer_id order by total DESC limit 3",
+      "SELECT c.customer_id, c.name AS customer_name, COUNT(o.order_id) AS total_orders, SUM(o.total) AS total_spent, COUNT(DISTINCT p.payment_method) AS distinct_payment_methods, MAX(p.amount) AS max_payment, MIN(p.amount) AS min_payment, ARRAY_AGG(DISTINCT p.payment_method) AS payment_methods_used FROM customers c JOIN orders o ON c.customer_id = o.customer_id JOIN payments p ON o.payment_id = p.payment_id GROUP BY c.customer_id, c.name ORDER BY total_spent DESC;",
+    );
+    console.log("Query Result:", result.rows);
+    res.json(result.rows);
+  } catch (error) {
+    console.error("Error fetching orders data:", error);
+    res.status(500).send("Error retrieving orders data");
+  }
+});
+
+app.get("/order/view/topproducts", async (req, res) => {
+  try {
+    const result = await db.query(
+      " SELECT c.category_name, p.name AS product_name, COUNT(od.order_detail_id) AS total_orders, SUM(od.quantity) AS total_quantity_sold, SUM(od.subtotal) AS total_revenue FROM categories c JOIN products p ON c.category_id = p.category_id JOIN orderdetails od ON p.product_id = od.product_id GROUP BY c.category_name, p.name ORDER BY total_revenue DESC, total_quantity_sold DESC;",
     );
     console.log("Query Result:", result.rows);
     res.json(result.rows);
